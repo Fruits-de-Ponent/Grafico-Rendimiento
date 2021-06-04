@@ -1,0 +1,14 @@
+body {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: rgb(165, 165, 165);
+}
+
+.container {
+    color: black;
+    padding: 30px;
+    margin-top: 0px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
