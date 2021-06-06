@@ -5,18 +5,21 @@ const app = express();
 const port = 5000;
 
 //STATICS PARA LOS ARCHIVOS PUBLICOS
-app.use(express.static('public'));
-app.use('/css', express.static(__dirname + '/public/style.css'))
-app.use('/js', express.static(__dirname + 'chart.js'))
- 
+app.use(express.static(path.join(__dirname,"public")));
+app.use('/Panel', express.static(__dirname + 'public/Panel'))
+app.use('/Grafico', express.static(__dirname + 'public/Grafico'))
+app.use(express.static(__dirname));
+
+app.set('Panel', './Panel');
+app.set('Grafico', './Grafico');
 
 app.get('',(req, res)  => {
-    res.sendFile(__dirname + '/public/actualizarGrafico.html')
+    res.sendFile(__dirname + '/public/Panel/panel-de-control.html')
 })
 
 
 //LISTEN EN EL PUERTO 5000
-app.listen(port, () => console.log(`Example app listening on port:${port}`))
+app.listen(port, () => console.log(`Ejecutando en el puerto: ${port}`))
 
 
 
