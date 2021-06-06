@@ -1,0 +1,14 @@
+body {
+    background-color: rgb(33, 33, 33) !important;
+}
+
+#navegador, #tituloNav {
+    transition: 0.8s;
+    margin: 0;
+}
+
+#navegador:hover > #tituloNav {
+    background-color: #ffc107 !important;
+    transition: 0.8s;
+    color: #212529 !important;
+}
