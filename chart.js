@@ -111,7 +111,7 @@ function actualizarGrafico() {
         bordes = ['rgba(0, 255, 84, 1)'];
     } else {
         color = ['rgba(255, 140, 0, 0.2)'];
-        color = ['rgba(255, 140, 0, 1)'];
+        bordes = ['rgba(255, 140, 0, 1)'];
 
     }
 
@@ -151,7 +151,7 @@ function actualizarGrafico() {
                     fontColor: "white",
                     fontSize: 15,
                     family: "Arial",
-                    stepSize: 1, //SEPARACION ENTRE EL VALOR DE LOS DATOS
+                    stepSize: 0.5, //SEPARACION ENTRE EL VALOR DE LOS DATOS
                 },
                 //LINEAS HORIZONTALES
                 gridLines: {
@@ -165,7 +165,6 @@ function actualizarGrafico() {
                 ticks: { //INFORMACIÓN DE LOS DATOS EN EL LADO Y (ARRIBA - ABAJO)
                     fontColor: "white",
                     fontSize: 12,
-                    stepSize: 0.1,
                 },
                 //LINEAS VERTICALES
             }]
