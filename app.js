@@ -4,22 +4,22 @@ var path = require('path')
 const app = express();
 const port = 5000;
 
-//STATICS PARA LOS ARCHIVOS PUBLICOS
-app.use(express.static(path.join(__dirname,"public")));
-app.use('/Panel', express.static(__dirname + 'public/Panel'))
-app.use('/Grafico', express.static(__dirname + 'public/Grafico'))
-app.use(express.static(__dirname));
+var fs = require('fs');
 
-app.set('Panel', './Panel');
-app.set('Grafico', './Grafico');
+//STATICS PARA LOS ARCHIVOS PUBLICOS
+app.use(express.static(path.join(__dirname,"public")))
+app.use(express.static(path.join(__dirname,'public/Panel')))
+app.use(express.static(path.join(__dirname,'public/Grafico')))
 
 app.get('',(req, res)  => {
-    res.sendFile(__dirname + '/public/Panel/panel-de-control.html')
+    res.sendFile(__dirname + '/Panel/panel-de-control.html')
 })
 
-
 //LISTEN EN EL PUERTO 5000
+console.log(`FRUITS DE PONENT - GRAFICO`)
+console.log(`Iniciando aplicación web`)
 app.listen(port, () => console.log(`Ejecutando en el puerto: ${port}`))
+console.log(`Listo`)
 
 
 

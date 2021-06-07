@@ -1,8 +1,11 @@
+console.log(localStorage);
+
 var datos = [];
 var tipo = 'bar';
 var total = 0;
 var grafico;
 var recibido;
+
 actualizarInformacion();
 
 function graficoFinal(){
@@ -190,7 +193,6 @@ function cargarLocalStorage() {
         recibido = localStorage.getItem('datos');
         datos = JSON.parse(recibido);
     } 
-    if (datos.length != null && capital.length < 1) {
         for(i = 0; i < datos.length; i++) {
             var campo = "campo";
             campo = campo + i;
@@ -198,10 +200,8 @@ function cargarLocalStorage() {
             elemento.value = datos[i];
         }
     }   
-}
 
 function borrarLocalStorage() {
     localStorage.clear();
     actualizarInformacion();
 }
-

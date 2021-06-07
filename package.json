@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "ejs": "^3.1.6",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "fs": "0.0.1-security"
   },
   "name": "grafico-app",
   "description": "https://www.it-swarm-es.com/es/javascript/como-leer-un-archivo-json-local-externo-en-javascript/1043362222/",
