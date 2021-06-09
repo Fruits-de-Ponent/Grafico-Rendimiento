@@ -5,6 +5,10 @@ var grafico;
 var recibido;
 actualizarInformacion();
 
+var media = document.getElementById('media').innerHTML;
+
+
+
 function graficoFinal(){
     borrarLocalStorage();
     guardarLocalStorage();
@@ -19,17 +23,17 @@ function validacionRendimiento() {
 
         //VALIDACIÓN NUMERO MAS LARGO DE 3 DÍGITOS
         if (elemento.value.length > 3) {
-            elemento.value = 0;
+            elemento.value = "";
         }
 
         // VALIDACIÓN DE INTERVALOS 
         if (elemento.value < 0 || elemento.value > 100) {
-            elemento.value = 0;
+            elemento.value = "";
         } 
 
         //VALIDACIÓN DE NUMERO EMPEZANDO POR 0
         if (elemento.value.charAt(0) == 0 && elemento.value.length > 1 ) {
-            elemento.value = 0;
+            elemento.value = "";
         }
     }
     console.log("Validado");
@@ -51,8 +55,8 @@ function enviarDatos() {
         document.getElementById('introducidos').innerHTML = "Datos introducidos: ";
         document.getElementById('array').innerHTML = "Datos recogidos: ";
         console.log("Datos enviados");
+        actualizarGrafico(); 
         actualizarInformacion();
-        actualizarGrafico();    
     }
 }
 
@@ -62,6 +66,7 @@ function actualizarInformacion() {
     if(datos.length > 0){
         document.getElementById('introducidos').innerHTML = "Datos introducidos: " + datos.length;
         document.getElementById('array').innerHTML = "Datos recogidos: " + datos.toString();
+        document.getElementById('media').innerHTML = "Media: " + total;
     }
     if (datos == null) {
         console.log("No hay datos");
@@ -69,7 +74,7 @@ function actualizarInformacion() {
     console.log("Datos actualizados");
 }
 
-//CREACIÓN Y EDICION DEL GRÁFICO
+//CREACIÓN Y EDICION DEL GRÁFICO 
 function actualizarGrafico() {
     //VARIABLES
     var color;
@@ -170,8 +175,7 @@ function actualizarGrafico() {
 }
 
 function guardarLocalStorage() {
-    console.log(datos);
-
+    document.getElementById("media").innerHTML = "Media: " + total;
     if (datos.length > 0) {
         datosObjJSON = JSON.stringify(datos);
         localStorage.setItem('datos', datosObjJSON);
@@ -190,6 +194,7 @@ function cargarLocalStorage() {
         var elemento = document.getElementById(campo);
         elemento.value = datos[i];
     }
+    actualizarInformacion();
 }   
 
 function borrarLocalStorage() {
