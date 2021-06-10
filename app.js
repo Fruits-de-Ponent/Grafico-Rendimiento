@@ -34,6 +34,8 @@ io.on('connection', (socket) => {
         console.log(this.total);
     });
 });
+
+io.emit('alert', "prueba");
   
 http.listen(port, () => {
     console.log(`Socket.IO server running at http://localhost:${port}/`);
