@@ -10,6 +10,10 @@ socket.on('devolver media', function(serMedia) {
     crearGrafico();
 });
 
+setInterval(function() {
+    window.location.reload();
+  }, 300000); 
+
 function crearGrafico() {
     //VARIABLES 
     var grafico;
