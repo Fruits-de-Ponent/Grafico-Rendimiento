@@ -21,13 +21,13 @@ function crearGrafico() {
 
     //IF PARA ASIGNAR COLOR DEPENDIENDO DEL RENDIMIENTO
     if (total < 24) {
-        color = ['rgba(255, 0, 0, 0.2)'];
+        color = ['rgba(255, 0, 0, 1)'];
         bordes = ['rgba(255, 0, 0, 1)'];
     } else if (total > 25) {
-        color = ['rgba(0, 255, 84, 0.2)'];
+        color = ['rgba(0, 255, 84, 1)'];
         bordes = ['rgba(0, 255, 84, 1)'];
     } else {
-        color = ['rgba(255, 140, 0, 0.2)'];
+        color = ['rgba(255, 140, 0, 1)'];
         bordes = ['rgba(255, 140, 0, 1)'];
     }
 
@@ -64,7 +64,9 @@ function crearGrafico() {
                     fontColor: "white",
                     fontSize: 15,
                     family: "Arial",
-                    stepSize: 0.5, //SEPARACION ENTRE EL VALOR DE LOS DATOS
+                    stepSize: 10, //SEPARACION ENTRE EL VALOR DE LOS DATOS
+                    beginAtZero: true,
+                    max: 100,
                 },
                 //LINEAS HORIZONTALES
                 gridLines: {
@@ -74,11 +76,15 @@ function crearGrafico() {
             }], 
             //ESCALA X
             xAxes: [{
-                barThickness: 450,
+                barThickness: 900,
                 ticks: { //INFORMACIÓN DE LOS DATOS EN EL LADO Y (ARRIBA - ABAJO)
                     fontColor: "white",
                     fontSize: 12,
                 },
+                gridLines: {
+                    display: true,
+                    color: "grey", 
+                }
             }]
         }
     }

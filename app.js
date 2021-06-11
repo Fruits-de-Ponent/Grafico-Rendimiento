@@ -7,8 +7,6 @@ const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
 var serMedia = 0;
 var serCampos = [];
-var grafico = "";
-
 
 //STATICS PARA LOS ARCHIVOS PUBLICOS
 app.get('/panel', (req, res) => {
@@ -31,7 +29,7 @@ app.get('/cliente.js', (req, res) => {
       res.sendFile(__dirname + '/Panel/cliente.js');
 });
   
-app.get('/grafico', (req, res) => {
+app.get('/index.html', (req, res) => {
     res.sendFile(__dirname + '/Grafico/index.html');
 });
 
@@ -47,8 +45,10 @@ io.on('connection', (socket) => {
         console.log("Cliente " + socket.id.substring(0,4) + " desconectado");
     });
 
-    socket.on('prueba', () => {
-        console.log("Prueba llamada");
+    socket.on('borrar', () => {
+        console.log("Borrando datos")
+        serCampos = 0;
+        serMedia = 0;
     });
 
     socket.on('guardar media', function(cliMedia){

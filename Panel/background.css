@@ -12,3 +12,8 @@ body {
     transition: 0.8s;
     color: #212529 !important;
 }
+
+.btn:hover {
+    background-color: #212529;
+    color: #ffc107;
+}
