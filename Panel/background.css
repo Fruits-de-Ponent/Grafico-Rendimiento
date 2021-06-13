@@ -1,8 +1,10 @@
 body {
-    background-color: rgb(33, 33, 33) !important;
+    background-color: rgb(33, 33, 33);
+    transition: 1s;
 }
 
 #navegador, #tituloNav {
+    background-color: #212529 !important;
     transition: 0.8s;
     margin: 0;
 }
@@ -13,7 +15,17 @@ body {
     color: #212529 !important;
 }
 
+.btn {
+    transition: 0.5s;
+}
+
 .btn:hover {
     background-color: #212529;
     color: #ffc107;
+    transition: 0.5s;
+}
+
+#alerta {
+    transition: 0.8s;
+    display: none;
 }

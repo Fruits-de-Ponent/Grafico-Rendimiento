@@ -16,7 +16,6 @@ setInterval(function() {
 
 function crearGrafico() {
     //VARIABLES 
-    var grafico;
     var color;
     var bordes;
     var valores;
@@ -35,67 +34,62 @@ function crearGrafico() {
         bordes = ['rgba(255, 140, 0, 1)'];
     }
 
-    //INFORMACIÓN DEL GRAFICO
     valores = {
         datasets: [{
             label: 'Rendimiento medio',
             data: [total],
             backgroundColor: color,
             borderColor: bordes,
-            borderWidth: 2
+            borderWidth: 1
         }]
     };
-    //OPCIÓNES DEL GRÁFICO
+
     opciones = {
+        responsive: true,
         layout: {
-            padding: 40 //SEPARACIÓN RESPECTO A LOS BORDES DEL CONTENEDOR
+            padding: 20
         },
-        legend: { //LEYENDA Y TITULO
-            display: true,
-            position: 'top', //POSICION DE LA LEYENDA RESPECTO AL GRÁFICO
+        legend: {
+            position: 'top',
             labels: {
-                boxWidth: 30, //ANCHO DE LA MUESTRA EN LA LEYENDA (ICONO DE COLOR)
-                fontColor: 'white' //COLOR DE LA FUENTE
-            }
+                boxWidth: 30,
+                fontColor: 'white'
+            },
         },
-        //EDICION DE LAS ESCALAS
         scales: {
-            //ESCALA Y
             yAxes: [{
-                barThickness: 6,
-                maxBarThickness: 8,
-                ticks: { //INFORMACIÓN DE LOS DATOS EN EL LADO Y (IZQUIERDA - DERECHA)
+                ticks: {
                     fontColor: "white",
-                    fontSize: 15,
                     family: "Arial",
-                    stepSize: 10, //SEPARACION ENTRE EL VALOR DE LOS DATOS
+                    fontSize: 15,
+                    stepSize: 10, 
                     beginAtZero: true,
                     max: 100,
                 },
-                //LINEAS HORIZONTALES
                 gridLines: {
                     display: true,
+                    drawBorder: true,
                     color: "grey", 
                 }
-            }], 
-            //ESCALA X
+            }],
             xAxes: [{
-                barThickness: 900,
-                ticks: { //INFORMACIÓN DE LOS DATOS EN EL LADO Y (ARRIBA - ABAJO)
+                barThickness: 850,
+                ticks: {
                     fontColor: "white",
                     fontSize: 12,
                 },
                 gridLines: {
                     display: true,
+                    drawBorder: true,
                     color: "grey", 
                 }
             }]
         }
     }
+
     grafico = new Chart(html, {
         type: 'bar',
         data: valores,
         options: opciones
     });
-
 }

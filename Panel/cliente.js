@@ -5,14 +5,27 @@ var total = 0;
 var grafico;
 var recibido;
 
-//VALIDACIÓN DE DATOS DE TODOS LOS CAMPOS
+actualizar();
+function actualizar() {
+    datos = [];
+    datos = campos();
+    total = media();
+    document.getElementById('introducidos').innerHTML = "Campos utilizados: " + datos.length;
+    if (datos == 0){
+        document.getElementById('recogidos').innerHTML = "Datos recogidos: 0";
+    } else {
+        document.getElementById('recogidos').innerHTML = "Datos recogidos: " + datos;
+    }
+    document.getElementById('rendimiento').innerHTML = "Rendimiento medio: " + media();
+}
+
 function validacion() {
-    for (i = 0; i < 12; i++) {
+    for (i = 0; i < 15; i++) {
         var campo = "campo";
         campo = campo + i;
         var elemento = document.getElementById(campo);
 
-        if (elemento.value.length > 3) {
+        if (elemento.value.length > 4) {
             elemento.value = "";
             console.log("X")
         }
@@ -24,17 +37,22 @@ function validacion() {
 
         if (elemento.value.charAt(0) == 0 && elemento.value.length > 1 ) {
             elemento.value = "";
-            console.log("X");
+            console.log("X");s
         }
     }
+    actualizar();
 }
 
 function borrarDatos() {
+    document.body.style.backgroundColor = "#d53032";
+    setTimeout(function(){ 
+        document.body.style.backgroundColor = "#212529";
+    }, 1000);
     socket.emit('borrar');
 }
 
 function campos() {
-    for (i = 0; i < 12; i++) {
+    for (i = 0; i < 15; i++) {
         var campo = "campo" + i;
         var elemento = document.getElementById(campo);
         if (elemento.value > 0 || elemento.value < 101 && elemento.value != 0) {
@@ -47,23 +65,35 @@ function campos() {
 function setCampos() {
     datos = [];
     datos = campos();
-    socket.emit('guardar campos', datos);
-    console.log('Enviando campos al servidor ' + datos);
-    setMedia();
+    console.log(datos.length)
+    if (datos.length > 0) {
+        document.body.style.backgroundColor = "#287233";
+            setTimeout(function(){ 
+        document.body.style.backgroundColor = "#212529";
+        }, 1000);
+        socket.emit('guardar campos', datos);
+        console.log('Enviando campos al servidor ' + datos);
+        setMedia();
+    }
 }
 
 function getCampos(){
+    document.body.style.backgroundColor = "#ffc107";
+    setTimeout(function(){ 
+        document.body.style.backgroundColor = "#212529";
+    }, 1000);
     socket.emit('llamada campos');
     console.log("Llamando al servidor para los campos")
     socket.on('devolver campos', function(serCampos) {
         console.log('Servidor devolviendo campos: ' + serCampos);
         datos = serCampos;
-        for (i = 0; i < 12; i++) {
+        for (i = 0; i < 15; i++) {
             var campo = "campo";
             campo = campo + i;
             var elemento = document.getElementById(campo);
             elemento.value = datos[i];
         }
+        previsualizar();
     });
 }
 
@@ -73,16 +103,6 @@ function setMedia() {
         socket.emit('guardar media', total);
         console.log('Enviando media al servidor ' + total);
     }
-}
-
-actualizar();
-function actualizar() {
-    datos = [];
-    datos = campos();
-    total = media();
-    document.getElementById('introducidos').innerHTML = "Datos introducidos: " + datos.length;
-    document.getElementById('recogidos').innerHTML = "Datos recogidos: " + datos;
-    document.getElementById('rendimiento').innerHTML = "Rendimiento medio: " + media();
 }
 
 function media() {
@@ -109,12 +129,15 @@ function previsualizar() {
 }
 
 function crearGrafico(){
-    var color;
-    var bordes;
-    var valores;
-    var opciones;
+    if (grafico != undefined || grafico !=null) {
+        grafico.destroy();
+    }
+    var color = "";
+    var bordes = "";
+    var valores = "";
+    var opciones = "";
     var html = document.getElementById('grafico');
-    var container =document.getElementById('containerGrafico')
+    var container = document.getElementById('containerGrafico');
     container.className = "container mx-auto bg-dark border border-warning rounded";
 
     if (total < 24) {
@@ -128,63 +151,59 @@ function crearGrafico(){
         bordes = ['rgba(255, 140, 0, 1)'];
     }
 
-    //INFORMACIÓN DEL GRAFICO
     valores = {
         datasets: [{
             label: 'Rendimiento medio',
             data: [total],
             backgroundColor: color,
             borderColor: bordes,
-            borderWidth: 2
+            borderWidth: 1
         }]
     };
-    //OPCIÓNES DEL GRÁFICO
+
     opciones = {
+        responsive: true,
         layout: {
-            padding: 40 //SEPARACIÓN RESPECTO A LOS BORDES DEL CONTENEDOR
+            padding: 20
         },
-        legend: { //LEYENDA Y TITULO
-            display: true,
-            position: 'top', //POSICION DE LA LEYENDA RESPECTO AL GRÁFICO
+        legend: {
+            position: 'top',
             labels: {
-                boxWidth: 30, //ANCHO DE LA MUESTRA EN LA LEYENDA (ICONO DE COLOR)
-                fontColor: 'white' //COLOR DE LA FUENTE
-            }
+                boxWidth: 30,
+                fontColor: 'white'
+            },
         },
-        //EDICION DE LAS ESCALAS
         scales: {
-            //ESCALA Y
             yAxes: [{
-                barThickness: 6,
-                maxBarThickness: 8,
-                ticks: { //INFORMACIÓN DE LOS DATOS EN EL LADO Y (IZQUIERDA - DERECHA)
+                ticks: {
                     fontColor: "white",
-                    fontSize: 15,
                     family: "Arial",
-                    stepSize: 10, //SEPARACION ENTRE EL VALOR DE LOS DATOS
+                    fontSize: 15,
+                    stepSize: 10, 
                     beginAtZero: true,
                     max: 100,
                 },
-                //LINEAS HORIZONTALES
                 gridLines: {
                     display: true,
+                    drawBorder: true,
                     color: "grey", 
                 }
-            }], 
-            //ESCALA X
+            }],
             xAxes: [{
-                barThickness: 900,
-                ticks: { //INFORMACIÓN DE LOS DATOS EN EL LADO Y (ARRIBA - ABAJO)
+                barThickness: 850,
+                ticks: {
                     fontColor: "white",
                     fontSize: 12,
                 },
                 gridLines: {
                     display: true,
+                    drawBorder: true,
                     color: "grey", 
                 }
             }]
         }
     }
+
     grafico = new Chart(html, {
         type: 'bar',
         data: valores,

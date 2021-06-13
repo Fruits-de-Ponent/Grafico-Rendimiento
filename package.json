@@ -18,5 +18,6 @@
     "start": "nodemon app.js"
   },
   "author": "Klaudijus Miskinis",
+  "email": "klaudiusmiskinis@gmail.com",
   "license": "ISC"
 }
