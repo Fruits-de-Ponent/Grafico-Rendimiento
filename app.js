@@ -45,7 +45,7 @@ io.on('connection', (socket) => {
     console.log(date + 'Cliente ' +  usuario + ' conectado');
 
     socket.on('disconnect', () => {
-        console.log(date + "Cliente " + usuario + " desconectado");
+        console.log(date + 'Cliente ' + usuario + " desconectado");
     });
 
     socket.on('borrar', () => {
