@@ -62,9 +62,9 @@ function crearGrafico() {
                     fontColor: "white",
                     family: "Arial",
                     fontSize: 15,
-                    stepSize: 10, 
+                    stepSize: 5, 
                     beginAtZero: true,
-                    max: 100,
+                    max: 50,
                 },
                 gridLines: {
                     display: true,

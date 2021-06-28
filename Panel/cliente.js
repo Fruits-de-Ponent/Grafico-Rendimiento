@@ -30,7 +30,7 @@ function validacion() {
             console.log("X")
         }
 
-        if (elemento.value < 0 || elemento.value > 100) {
+        if (elemento.value < 0 || elemento.value > 50) {
             elemento.value = "";
             console.log("X");
         } 
@@ -55,7 +55,7 @@ function campos() {
     for (i = 0; i < 15; i++) {
         var campo = "campo" + i;
         var elemento = document.getElementById(campo);
-        if (elemento.value > 0 || elemento.value < 101 && elemento.value != 0) {
+        if (elemento.value > 0 || elemento.value < 51 && elemento.value != 0) {
              datos.push(elemento.value);
         }
     }
@@ -179,9 +179,9 @@ function crearGrafico(){
                     fontColor: "white",
                     family: "Arial",
                     fontSize: 15,
-                    stepSize: 10, 
+                    stepSize: 5, 
                     beginAtZero: true,
-                    max: 100,
+                    max: 50,
                 },
                 gridLines: {
                     display: true,
