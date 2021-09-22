@@ -4,7 +4,7 @@
     "depd": "^1.1.2",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "socket.io": "^4.1.2"
+    "socket.io": "^4.2.0"
   },
   "name": "grafico-app",
   "description": "https://www.it-swarm-es.com/es/javascript/como-leer-un-archivo-json-local-externo-en-javascript/1043362222/",
@@ -19,5 +19,13 @@
   },
   "author": "Klaudijus Miskinis",
   "email": "klaudiusmiskinis@gmail.com",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klaudiusmiskinis/GraficoFDP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/klaudiusmiskinis/GraficoFDP/issues"
+  },
+  "homepage": "https://github.com/klaudiusmiskinis/GraficoFDP#readme"
 }
